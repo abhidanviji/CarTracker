@@ -22,7 +22,7 @@ public class JPAConfig {
         LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
         emf.setDataSource(getDataSource());
         emf.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        emf.setPackagesToScan("io.egen.entity");
+        emf.setPackagesToScan("com.abhi.entity");
 
         Properties properties = new Properties();
         properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL57Dialect");
