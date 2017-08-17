@@ -18,7 +18,7 @@ public class Vehicles {
     private int year;
     private int redlineRpm;
     private double maxFuelVolume;
-    private String lastServiceDate;
+    private Date lastServiceDate;
 
     public String getVin() {
         return vin;
@@ -68,11 +68,11 @@ public class Vehicles {
         this.maxFuelVolume = maxFuelVolume;
     }
 
-    public String getLastServiceDate() {
+    public Date getLastServiceDate() {
         return lastServiceDate;
     }
 
-    public void setLastServiceDate(String lastServiceDate) {
+    public void setLastServiceDate(Date lastServiceDate) {
         this.lastServiceDate = lastServiceDate;
     }
 }

@@ -58,6 +58,8 @@ public class ReadingServiceImpl implements ReadingService{
 
     @Transactional
     public Reading create(Reading r) {
+
+        //Rules for Alerts Triggering point
         Vehicles vehicles = vehicleRepository.findByVin(r.getVin());
 
         RedLineRpmRule redLineRpmRule = new RedLineRpmRule();

@@ -13,7 +13,7 @@ public class Reading {
     private String vin;
     private int latitude;
     private int longitude;
-    private String timestamp;
+    private Date timestamp;
     private double fuelvolume;
     private int speed;
     private int engineHp;
@@ -57,11 +57,11 @@ public class Reading {
         this.longitude = longitude;
     }
 
-    public String getTimestamp() {
+    public Date getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }
 
