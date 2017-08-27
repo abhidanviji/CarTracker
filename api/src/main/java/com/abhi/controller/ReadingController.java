@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/readings")
-@CrossOrigin(origins = "http://mocker.egen.io")
+@CrossOrigin
 public class ReadingController {
     @Autowired
     ReadingService service;
@@ -22,8 +22,14 @@ public class ReadingController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/{vin}",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Reading findOne(@PathVariable("vin") String vin) {
+    public List<Reading> findOne(@PathVariable("vin") String vin) {
         return service.findOne(vin);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/maps/{vin}",
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<Reading> findOneMap(@PathVariable("vin") String vin) {
+        return service.findOneMap(vin);
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,

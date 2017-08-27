@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/vehicles")
-@CrossOrigin(origins = "http://mocker.egen.io")
+@CrossOrigin
 public class VehicleController {
 
     @Autowired

@@ -7,7 +7,9 @@ import java.util.List;
 public interface ReadingRepository {
     List<Reading> findAll();
 
-    Reading findByVin(String vin);
+    List<Reading> findByVin(String vin);
+
+    List<Reading> findOneMap(String vin);
 
     Reading create(Reading emp);
 

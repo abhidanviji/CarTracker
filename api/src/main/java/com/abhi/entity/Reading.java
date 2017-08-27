@@ -1,20 +1,23 @@
 package com.abhi.entity;
 
 import javax.persistence.*;
+import java.util.Date;
+import java.util.UUID;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name="Reading.findAll",query="SELECT r FROM Reading r ORDER BY r.vin DESC"),
-        @NamedQuery(name="Reading.findByVin",query="SELECT r FROM Reading r WHERE r.vin=:paramVin")
+        @NamedQuery(name="Reading.findAll",query="SELECT r FROM Reading r ORDER BY r.timestamp desc"),
+        @NamedQuery(name="Reading.findByVin",query="SELECT r FROM Reading r WHERE r.vin=:paramVin AND ((hour(timediff(r.timestamp,utc_timestamp()))*60)+(minute(timediff(r.timestamp,utc_timestamp())))) < 30 ORDER BY r.timestamp"),
+        @NamedQuery(name="Reading.findOneMap",query="SELECT r FROM Reading r WHERE r.vin=:paramVin ")
 })
 public class Reading {
-
     @Id
+    private String id;
     private String vin;
-    private int latitude;
-    private int longitude;
+    private double latitude;
+    private double longitude;
     private Date timestamp;
-    private double fuelvolume;
+    private double fuelVolume;
     private int speed;
     private int engineHp;
     private boolean checkEngineLightOn;
@@ -24,6 +27,18 @@ public class Reading {
 
     @OneToOne(cascade = {CascadeType.ALL})
     private Tires tires;
+
+    public Reading(){
+        this.id = UUID.randomUUID().toString();
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public Tires getTires() {
         return tires;
@@ -41,19 +56,19 @@ public class Reading {
         this.vin = vin;
     }
 
-    public int getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(int latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public int getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(int longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
@@ -65,12 +80,12 @@ public class Reading {
         this.timestamp = timestamp;
     }
 
-    public double getFuelvolume() {
-        return fuelvolume;
+    public double getFuelVolume() {
+        return fuelVolume;
     }
 
-    public void setFuelvolume(double fuelvolume) {
-        this.fuelvolume = fuelvolume;
+    public void setFuelVolume(double fuelVolume) {
+        this.fuelVolume = fuelVolume;
     }
 
     public int getSpeed() {

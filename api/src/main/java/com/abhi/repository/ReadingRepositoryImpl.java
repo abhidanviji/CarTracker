@@ -21,16 +21,18 @@ public class ReadingRepositoryImpl implements ReadingRepository {
         return query.getResultList();
     }
 
-    public Reading findByVin(String vin) {
+    public List<Reading> findByVin(String vin) {
         TypedQuery<Reading> query = entityManager.createNamedQuery("Reading.findByVin",
                 Reading.class);
         query.setParameter("paramVin", vin);
-        List<Reading> resultList = query.getResultList();
-        if (resultList != null && resultList.size() == 1) {
-            return resultList.get(0);
-        } else {
-            return null;
-        }
+        return query.getResultList();
+    }
+
+    public List<Reading> findOneMap(String vin) {
+        TypedQuery<Reading> query = entityManager.createNamedQuery("Reading.findOneMap",
+                Reading.class);
+        query.setParameter("paramVin", vin);
+        return query.getResultList();
     }
 
     public Reading create(Reading r) {

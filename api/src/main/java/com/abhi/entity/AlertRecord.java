@@ -2,9 +2,15 @@ package com.abhi.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name="Alerts.findAllByVin",query="SELECT a FROM AlertRecord a WHERE a.vin=:paramVin ORDER BY a.timestamp DESC")
+})
 public class AlertRecord {
 
     @Id
@@ -12,9 +18,19 @@ public class AlertRecord {
     private String vin;
     private String type;
     private String priority;
+    private Date timestamp;
 
     public AlertRecord(){
         this.id = UUID.randomUUID().toString();
+        this.timestamp = new Date();
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
     }
 
     public String getId() {
