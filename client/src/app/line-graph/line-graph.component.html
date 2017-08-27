@@ -1,0 +1,37 @@
+<div *ngIf="readings==0; then first else second"></div>
+<ng-template #first> No Values </ng-template>
+<ng-template #second>
+<a [routerLink]="['/vehicles',readings[0].vin]" class="btn btn-primary">Go Back</a>
+<hr>
+<h4>  Line Chart </h4>
+  <div *ngIf="!newVar[1]; then third else fourth"></div>
+  <ng-template #third> <br>No Values<br> </ng-template>
+  <ng-template #fourth>
+<div id="line_chart" [chartData]="newVar" [chartOptions]= "line_ChartOptions" chartType="LineChart" GoogleChart></div>
+  </ng-template>
+<br>
+<h4>Select RPM time range</h4>
+<input type="radio" name = "vehicle" (click)="loadRPM(5)">  5 Minutes
+<input type="radio" name = "vehicle" (click)="loadRPM(15)"> 15 Minutes
+<input type="radio" name = "vehicle" (click)="loadRPM(20)"> 20 Minutes
+<input type="radio" name = "vehicle" (click)="loadRPM(30)"> 30 Minutes
+<hr>
+<h4>Select Fuel time range</h4>
+<input type="radio" name = "vehicle" (click)="loadFuel(5)">  5 Minutes
+<input type="radio" name = "vehicle" (click)="loadFuel(15)"> 15 Minutes
+<input type="radio" name = "vehicle" (click)="loadFuel(20)"> 20 Minutes
+<input type="radio" name = "vehicle" (click)="loadFuel(30)"> 30 Minutes
+<hr>
+<h4>Select HP time range</h4>
+<input type="radio" name = "vehicle" (click)="loadHP(5)">  5 Minutes
+<input type="radio" name = "vehicle" (click)="loadHP(15)"> 15 Minutes
+<input type="radio" name = "vehicle" (click)="loadHP(20)"> 20 Minutes
+<input type="radio" name = "vehicle" (click)="loadHP(30)"> 30 Minutes
+<hr>
+<h4>Select Speed time range</h4>
+<input type="radio" name = "vehicle" (click)="loadSpeed(5)">  5 Minutes
+<input type="radio" name = "vehicle" (click)="loadSpeed(15)"> 15 Minutes
+<input type="radio" name = "vehicle" (click)="loadSpeed(20)"> 20 Minutes
+<input type="radio" name = "vehicle" (click)="loadSpeed(30)"> 30 Minutes
+<hr>
+</ng-template>

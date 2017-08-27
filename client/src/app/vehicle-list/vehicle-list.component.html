@@ -1,0 +1,18 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th>Vin</th>
+    <th>Make</th>
+    <th>Model</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr *ngFor="let vehicle of vehicles">
+    <td><a [routerLink]="['/vehicles', vehicle.vin]">{{vehicle.vin}}</a></td>
+    <td>{{vehicle.make}}</td>
+    <td>{{vehicle.model}}</td>
+  </tr>
+  </tbody>
+</table>
+<a [routerLink]="['/alerts']" class="btn btn-primary">Check High Alerts</a>

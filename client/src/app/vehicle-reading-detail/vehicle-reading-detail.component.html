@@ -1,0 +1,63 @@
+<div *ngIf="readings==0; then first else second"></div>
+  <ng-template #first> No Values </ng-template>
+  <ng-template #second>
+    <a [routerLink]="['/vehicles',readings[0].vin]" class="btn btn-primary" style="position: fixed; margin-left: -7%">Go Back</a>
+    <hr>
+<h4>Vehicle "{{readings[0].vin}}" Geolocation & Readings for last 30 Minutes</h4>
+<hr>
+<table style="width:100%" *ngFor="let reading of readings">
+  {{setLatitude(convertStringToNumber(reading.latitude))}}
+  {{setLongitude(convertStringToNumber(reading.longitude))}}
+  <agm-map [latitude]= "lat" [longitude]="lng" [zoom]="4">
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  </agm-map>
+  <tr>
+    <th>Time of Reading:</th>
+    <td>{{reading.timestamp | date: "medium"}}</td>
+  </tr>
+  <tr>
+    <th>Fuel Volume:</th>
+    <td>{{reading.fuelVolume}}</td>
+  </tr>
+  <tr>
+    <th>Speed:</th>
+    <td>{{reading.speed}}</td>
+  </tr>
+  <tr>
+    <th>Engine HP:</th>
+    <td>{{reading.engineHp}}</td>
+  </tr>
+  <tr>
+    <th>Check Engine Light Indicator:</th>
+    <td *ngIf="reading.checkEngineLightOn; then thenBlock else elseBlock"></td>
+    <ng-template #thenBlock>ON</ng-template>
+    <ng-template #elseBlock>OFF</ng-template>
+  </tr>
+  <tr>
+    <th>Engine Coolant Indicator:</th>
+    <td *ngIf="reading.engineCoolantLow; then thenBlock else elseBlock"></td>
+    <ng-template #thenBlock>ON</ng-template>
+    <ng-template #elseBlock>OFF</ng-template>
+  </tr>
+  <tr>
+    <th>Cruise Control Indicator:</th>
+    <td *ngIf="reading.cruiseControlOn; then thenBlock else elseBlock"></td>
+    <ng-template #thenBlock>ON</ng-template>
+    <ng-template #elseBlock>OFF</ng-template>
+  </tr>
+  <tr>
+    <th>Engine RPM:</th>
+    <td>{{reading.engineRpm}}</td>
+  </tr>
+  <tr>
+    <th>Tire Pressure:</th>
+    <td>FL - {{reading.tires.frontLeft}} FR - {{reading.tires.frontRight}} BL - {{reading.tires.rearLeft}} BR - {{reading.tires.rearRight}}</td>
+  </tr>
+  <hr>
+</table>
+<hr>
+  </ng-template>
+
+
+
+

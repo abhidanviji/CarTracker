@@ -1,0 +1,28 @@
+<div *ngIf="alerts==0; then first else second"></div>
+<ng-template #first> No Values </ng-template>
+<ng-template #second>
+<a [routerLink]="['/vehicles',alerts[0].vin]" class="btn btn-primary" style="position: fixed; margin-left: -7%">Go Back</a>
+  <br><br>
+<h4>Vehicle "{{alerts[0].vin}}" Alerts</h4>
+
+<hr>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Priority</th>
+    <th>Description</th>
+    <th>Timestamp</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr *ngFor="let alert of alerts">
+    <td>{{alert.priority}}</td>
+    <td>{{alert.type}}</td>
+    <td>{{alert.timestamp | date: 'medium'}}</td>
+  </tr>
+  </tbody>
+</table>
+<hr>
+</ng-template>
+
