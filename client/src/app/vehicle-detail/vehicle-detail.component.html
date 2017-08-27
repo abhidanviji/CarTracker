@@ -1,0 +1,37 @@
+<h4>Vehicle Details</h4>
+<table style="width:100%">
+  <tr>
+    <th>VIN:</th>
+    <td>{{vehicle.vin}}</td>
+  </tr>
+  <tr>
+    <th>Make:</th>
+    <td>{{vehicle.make}}</td>
+  </tr>
+  <tr>
+    <th>Model:</th>
+    <td>{{vehicle.model}}</td>
+  </tr>
+  <tr>
+    <th>Year:</th>
+    <td>{{vehicle.year}}</td>
+  </tr>
+  <tr>
+    <th>Red Line RPM:</th>
+    <td>{{vehicle.redlineRpm}}</td>
+  </tr>
+  <tr>
+    <th>Max Fuel Volume:</th>
+    <td>{{vehicle.maxFuelVolume}}</td>
+  </tr>
+  <tr>
+    <th>Last Service Date:</th>
+    <td>{{vehicle.lastServiceDate | date: "medium"}}</td>
+  </tr>
+</table>
+<hr>
+<a [routerLink]="['/readings',vehicle.vin]" class="btn btn-primary">Map & Reading</a>
+<a [routerLink]="['/graph',vehicle.vin]" class="btn btn-primary">Line Graph</a>
+<a [routerLink]="['/alerts',vehicle.vin]" class="btn btn-primary">Alert History</a>
+<a [routerLink]="['/vehicles']" class="btn btn-primary">Go Back</a>
+
